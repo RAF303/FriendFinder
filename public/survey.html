@@ -239,19 +239,19 @@
                     $("#q10").val().trim(),
                 ]
             }
-            console.log("-------clicked", userInput)
-            $.ajax({
-                type: "post",
-                url: "/api/save",
-                data: userInput
-            }).then(function (data) {
-                console.log("here is our:----------- ", data)
+            $.post("/api/friends", userInput, function (data) {
+                $("#bestName").text(data.name);
+                $("#bestImage").attr("src", data.photo);
+                $("#results-modal").modal("toggle");
+
+                // $.ajax({
+                //     type: "post",
+                //     url: "/api/save",
+                //     data: userInput
+                // }).then(function (data) {
+                //     console.log("here is our:----------- ", data)
+                // })
             })
-        })
-        $.post("/api/save", userInput, function (data) {
-            $("#bestName").text(data.name);
-            $("#bestImage").attr("src", data.photo);
-            $("#results-modal").modal("toggle");
 
         });
     </script>

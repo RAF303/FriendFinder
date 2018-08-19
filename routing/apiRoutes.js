@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.get("/api/friends", function (req, res) {
         res.json(surveyData)
     })
-    app.post('/api/save', function (req, res) {
+    app.post('/api/friends', function (req, res) {
         var userInput = req.body;
         console.log("our input", userInput);
         var myResponse = userInput.scores;
@@ -28,19 +28,15 @@ module.exports = function (app) {
                 bestName = friendsArray[i].name;
                 bestPic = friendsArray[i].photo;
             }
-
-
-
-            // var = friends[i].scores
-            // var NewToatal = userInput.total //might be scores 
-            // subtract to find best match 
+            friendsArray.push(userInput);
+            res.json({
+                status: 'OK',
+                bestName: bestName,
+                bestPic: bestPic
+            });
         }
-        // friendsArray.push(userInput);
 
-        res.json({
-            status: 'OK',
-            bestName: bestName,
-            bestPic: bestPic
-        });
+
+
     })
 }
