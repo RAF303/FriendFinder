@@ -8,16 +8,17 @@ module.exports = function (app) {
         var userInput = req.body;
         console.log("our input", userInput);
         var myResponse = userInput.scores;
-
         var bestName = "";
         var bestPic = "";
         // Hopfully this will be the diffence holder
         var bestDifference = 1000;
 
+
         for (var i = 0; i < friendsArray.length; i++) {
             difference = 0;
-            for (var i = 0; i < myResponses.length; i++) {
-                diff += Math.abs(friendsArray[i].scores[i] - myResponse[i]);
+            for (var j = 0; j < myResponse.length; j++) {
+                difference += Math.abs(friendsArray[i].scores[j] - myResponse[j]);
+                console.log("--------*********---------", friendsArray[i].scores[j])
             }
             if (difference < bestDifference) {
                 console.log('Closest match found = ' + difference);
