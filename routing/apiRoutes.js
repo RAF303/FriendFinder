@@ -1,8 +1,9 @@
 var friendsArray = require("../data/friends.js");
+var path = require('path');
 
 module.exports = function (app) {
     app.get("/api/friends", function (req, res) {
-        res.json(surveyData)
+        res.json(friendsArray)
     })
     app.post('/api/friends', function (req, res) {
         var userInput = req.body;
@@ -18,7 +19,7 @@ module.exports = function (app) {
             difference = 0;
             for (var j = 0; j < myResponse.length; j++) {
                 difference += Math.abs(friendsArray[i].scores[j] - myResponse[j]);
-                console.log("--------*********---------", friendsArray[i].scores[j])
+                console.log(friendsArray);
             }
             if (difference < bestDifference) {
                 console.log('Closest match found = ' + difference);
